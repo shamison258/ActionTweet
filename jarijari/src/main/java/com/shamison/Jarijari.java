@@ -17,8 +17,8 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
 public class Jarijari extends JavaPlugin implements Listener{
-	Twitter twitter;
 
+	private Twitter twitter;
 	private String ACCESSTOKEN = null;
 	private String ACCESSSECRET = null;
 	private String CONSUMERKEY = null;
@@ -36,16 +36,14 @@ public class Jarijari extends JavaPlugin implements Listener{
 		ACCESSSECRET = "xxx";
 		twitter.setOAuthConsumer(CONSUMERKEY, CONSUMERSECRET);
 		twitter.setOAuthAccessToken(new AccessToken(ACCESSTOKEN, ACCESSSECRET));
-
 	}
-
 
 	public void onDisable(){
 		getLogger().info("disable");
 	}
 
 	@EventHandler
-	public void onBlockBreak(BlockBreakEvent event) {
+	public void onBlockBreak(BlockBreakEvent event){
 		Material block = event.getBlock().getType();
 		if(block == Material.GRAVEL){
 			Player player = event.getPlayer();
@@ -53,24 +51,21 @@ public class Jarijari extends JavaPlugin implements Listener{
 		}
 	}
 
-	private String time() {
+	public String time(){
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
-	    int month = cal.get(Calendar.MONTH) + 1;
-	    int day = cal.get(Calendar.DATE);
+		int month = cal.get(Calendar.MONTH) + 1;
+		int day = cal.get(Calendar.DATE);
 		int hour = cal.get(Calendar.HOUR_OF_DAY);
-	    int minute = cal.get(Calendar.MINUTE);
-	    int second = cal.get(Calendar.SECOND);
-	    String time = year + "/" + month + "/" + day +  " " + hour + ":" + minute + ":" + second ;
+		int minute = cal.get(Calendar.MINUTE);
+		int second = cal.get(Calendar.SECOND);
+		String time = year + "/" + month + "/" + day +  " " + hour + ":" + minute + ":" + second ;
 		return time;
 	}
 
 
 	public void Tweet(String tweet){
-
-
 		StatusUpdate update = new StatusUpdate(tweet);
-
 		try {
 			@SuppressWarnings("unused")
 			Status status = twitter.updateStatus(update);
