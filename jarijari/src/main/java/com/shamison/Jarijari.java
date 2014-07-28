@@ -49,7 +49,7 @@ public class Jarijari extends JavaPlugin implements Listener{
 		Material block = event.getBlock().getType();
 		if(block == Material.GRAVEL){
 			Player player = event.getPlayer();
-			this.Tweet("あぁ＾〜"+ player.getName() +"のこころじゃりじゃりするんじゃあ＾〜 [" + this.time());
+			this.Tweet("あぁ＾〜"+ player.getName() +"のこころじゃりじゃりするんじゃあ＾〜 [" + this.time() + "]");
 		}
 	}
 
@@ -61,7 +61,7 @@ public class Jarijari extends JavaPlugin implements Listener{
 		int hour = cal.get(Calendar.HOUR_OF_DAY);
 	    int minute = cal.get(Calendar.MINUTE);
 	    int second = cal.get(Calendar.SECOND);
-	    String time = year + "/" + month + "/" + day +  " " + hour + ":" + minute + ":" + second + "]";
+	    String time = year + "/" + month + "/" + day +  " " + hour + ":" + minute + ":" + second ;
 		return time;
 	}
 
