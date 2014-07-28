@@ -1,5 +1,7 @@
 package com.shamison;
 
+import java.util.Calendar;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,7 +17,6 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
 public class Jarijari extends JavaPlugin implements Listener{
-
 	Twitter twitter;
 
 	private String ACCESSTOKEN = null;
@@ -23,11 +24,19 @@ public class Jarijari extends JavaPlugin implements Listener{
 	private String CONSUMERKEY = null;
 	private String CONSUMERSECRET = null;
 
+
 	public void onEnable(){
 		getLogger().info("enable");
 		getServer().getPluginManager().registerEvents(this, this);
 		TwitterFactory tf = new TwitterFactory();
 		twitter = tf.getInstance();
+		CONSUMERKEY = "xxx";
+		CONSUMERSECRET = "xxx";
+		ACCESSTOKEN = "xxx";
+		ACCESSSECRET = "xxx";
+		twitter.setOAuthConsumer(CONSUMERKEY, CONSUMERSECRET);
+		twitter.setOAuthAccessToken(new AccessToken(ACCESSTOKEN, ACCESSSECRET));
+
 	}
 
 
@@ -40,24 +49,32 @@ public class Jarijari extends JavaPlugin implements Listener{
 		Material block = event.getBlock().getType();
 		if(block == Material.GRAVEL){
 			Player player = event.getPlayer();
-			this.Tweet("あぁ＾〜"+ player.getName() +"のこころじゃりじゃりするんじゃあ＾〜");
+			this.Tweet("あぁ＾〜"+ player.getName() +"のこころじゃりじゃりするんじゃあ＾〜 [" + this.time());
 		}
 	}
 
+	private String time() {
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+	    int month = cal.get(Calendar.MONTH) + 1;
+	    int day = cal.get(Calendar.DATE);
+		int hour = cal.get(Calendar.HOUR_OF_DAY);
+	    int minute = cal.get(Calendar.MINUTE);
+	    int second = cal.get(Calendar.SECOND);
+	    String time = year + "/" + month + "/" + day +  " " + hour + ":" + minute + ":" + second + "]";
+		return time;
+	}
+
+
 	public void Tweet(String tweet){
-		CONSUMERKEY = "xxx";
-		CONSUMERSECRET = "xxx";
-		ACCESSTOKEN = "xxx";
-		ACCESSSECRET = "xxx";
-		twitter.setOAuthConsumer(CONSUMERKEY, CONSUMERSECRET);
-		twitter.setOAuthAccessToken(new AccessToken(ACCESSTOKEN, ACCESSSECRET));
+
 
 		StatusUpdate update = new StatusUpdate(tweet);
 
 		try {
 			@SuppressWarnings("unused")
 			Status status = twitter.updateStatus(update);
-			System.out.println("OK!");
+			System.out.println("success.");
 		} catch (TwitterException e) {
 			e.printStackTrace();
 		}
