@@ -1,7 +1,6 @@
 name: KOKORO_Jarijari
 version: 1.0
-main: com.shamison.Jarijari
-commands:
+main: com.shamison.Main
   oauth:
     description: This is a demo command.
     usage: /<command> [player]
