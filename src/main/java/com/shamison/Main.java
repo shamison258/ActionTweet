@@ -1,9 +1,8 @@
 package com.shamison;
 
 import com.shamison.command.OAuthCommand;
-import com.shamison.command.event.DieEventListener;
+import com.shamison.event.DieEventListener;
 import com.shamison.tw.Tw;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin{

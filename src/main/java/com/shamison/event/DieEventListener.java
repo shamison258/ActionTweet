@@ -1,4 +1,4 @@
-package com.shamison.command.event;
+package com.shamison.event;
 
 import com.shamison.tw.Tw;
 import org.bukkit.Material;
