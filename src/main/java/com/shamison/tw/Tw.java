@@ -18,16 +18,15 @@ public class Tw {
     }
 
 
-
-    public void tweet(String tweet){
-        if (!inst.isNeedOAuth()){
+    public void tweet(String tweet) {
+        if (!inst.isNeedOAuth()) {
             try {
                 inst.getTwitter().updateStatus(new StatusUpdate(tweet));
             } catch (TwitterException e) {
                 //e.printStackTrace();
                 plugin.getLogger().warning("SET KEYS");
             }
-        }else {
+        } else {
             plugin.getLogger().warning("SET KEYS PLZ");
         }
     }

@@ -22,11 +22,11 @@ public class DieEventListener implements Listener {
     }
 
     @EventHandler
-    public void onBlockBreak(BlockBreakEvent event){
+    public void onBlockBreak(BlockBreakEvent event) {
         Material block = event.getBlock().getType();
-        if(block == Material.GRAVEL){
+        if (block == Material.GRAVEL) {
             Player player = event.getPlayer();
-            tw.tweet("あぁ＾〜"+
+            tw.tweet("あぁ＾〜" +
                     player.getName() +
                     "のこころじゃりじゃりするんじゃあ＾〜 [" +
                     this.time() + "]");
@@ -34,8 +34,8 @@ public class DieEventListener implements Listener {
     }
 
     @EventHandler
-    public void onDeathLava(PlayerDeathEvent event){
-        if(event.getDeathMessage().contains("lava")){
+    public void onDeathLava(PlayerDeathEvent event) {
+        if (event.getDeathMessage().contains("lava")) {
             event.setDeathMessage("溶岩の中、あったかいナリィ・・・");
             tw.tweet("溶岩の中、あったかいナリィ・・・ [" +
                     this.time() +
@@ -43,7 +43,7 @@ public class DieEventListener implements Listener {
         }
     }
 
-    public String time(){
+    public String time() {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH) + 1;
@@ -51,7 +51,7 @@ public class DieEventListener implements Listener {
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute = cal.get(Calendar.MINUTE);
         int second = cal.get(Calendar.SECOND);
-        return year + "/" + month + "/" + day +  " " + hour + ":" + minute + ":" + second;
+        return year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
 
     }
 }

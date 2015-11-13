@@ -15,12 +15,10 @@ import twitter4j.auth.RequestToken;
  */
 public class OAuthCommand implements CommandExecutor {
 
-
     private AccessToken accessToken;
     private RequestToken requestToken;
     private Main plugin;
     private Twitter twitter;
-
 
     public OAuthCommand(Main m) {
         this.plugin = m;
@@ -28,25 +26,25 @@ public class OAuthCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         switch (cmd.getName().toLowerCase()) {
-            case "oauth" :
+            case "oauth":
                 return oauthCmd(sender);
-            case "pin" :
+            case "pin":
                 return pinCmd(sender, args);
         }
         return false;
     }
 
-    private boolean oauthCmd(CommandSender sender){
+    private boolean oauthCmd(CommandSender sender) {
         try {
             requestToken = twitter.getOAuthRequestToken();
             requestToken.getToken();
             requestToken.getTokenSecret();
             if (null == accessToken) {
-                sender.sendMessage("clickURL: "+ requestToken.getAuthorizationURL());
+                sender.sendMessage("clickURL: " + requestToken.getAuthorizationURL());
                 sender.sendMessage("/pin [pin]");
-            }else{
+            } else {
                 sender.sendMessage("don't need oauth.");
             }
             return true;
@@ -56,8 +54,7 @@ public class OAuthCommand implements CommandExecutor {
         }
     }
 
-
-    private boolean pinCmd(CommandSender sender, String args[]){
+    private boolean pinCmd(CommandSender sender, String args[]) {
         String pin = args[0];
         if (pin.length() < 1)
             return false;
